@@ -5,10 +5,17 @@ import { Board, Column } from '../models/models.types';
 
 export function useBoard(initialBoard?: Board | null) {
   const [board, setBoard] = React.useState<Board | null>(initialBoard || null);
-  const [column, setColumn] = React.useState<Column[]>(initialBoard?.columns || []);
+  const [columns, setColumns] = React.useState<Column[]>(initialBoard?.columns || []);
   const [error, setError] = React.useState<string | null>(null);
 
-  return {};
-}
+  React.useEffect(() => {
+    if (initialBoard) {
+      setBoard(initialBoard);
+      setColumns(initialBoard.columns || []);
+    }
+  }, [initialBoard]);
 
-//4 04
+  async function moveJob(jobApplicationId: string, newColumnId: string, newOrder: number) {}
+
+  return { board, columns, error, moveJob };
+}

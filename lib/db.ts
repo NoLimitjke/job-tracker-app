@@ -18,7 +18,6 @@ if (!global.mongoose) {
 }
 
 async function connectDB() {
-  // ИСПРАВЛЕНИЕ: Проверяем не только наличие, но и состояние (readyState === 1 means connected)
   if (cached.conn && cached.conn.connection.readyState === 1) {
     return cached.conn;
   }
